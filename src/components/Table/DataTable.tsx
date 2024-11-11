@@ -49,20 +49,18 @@ export default function DataTable() {
    const isDataNotFound = search && entriesToShow.length === 0;
 
    return (
-     <div className="flex flex-col w-full gap-6">
-       <div className="flex flex-row justify-between md:flex-col md:items-center md:gap-4">
+     <div className="flex flex-col w-full gap-8">
+       <div className="flex flex-row justify-between items-center lg:flex-col lg:gap-4">
          {!isDataNotFound && (
-           <div className="flex flex-row">
-             <SelectEntries updateEntries={handleEntriesChange} />
-           </div>
+           <SelectEntries updateEntries={handleEntriesChange} />
          )}
-         <div className="ml-auto md:ml-0 md:w-1/2 sm:w-full">
+         <div className="w-[280px] lg:w-full">
            <Search setSearch={setSearch} />
          </div>
        </div>
 
        {isDataNotFound ? (
-         <div className="flex items-center justify-center h-40 text-[1.8rem] 2xl:text-[2rem]">
+         <div className="flex items-center justify-center h-40 text-3xl">
            No results found
          </div>
        ) : windowWidth >= 1024 ? (
@@ -72,15 +70,13 @@ export default function DataTable() {
        )}
 
        {!isDataNotFound && (
-         <div className="flex flex-row justify-between text-[1.8rem] 2xl:text-[2rem] md:flex-col md:items-center md:gap-4">
-           <div>{renderEntryInfo()}</div>
-           <div>
-             <Pagination
-               currentPage={currentPage}
-               setCurrentPage={setCurrentPage}
-               numberOfPages={numberOfPages}
-             />
-           </div>
+         <div className="flex flex-row justify-between items-center lg:flex-col lg:gap-4">
+           <div className="text-3xl">{renderEntryInfo()}</div>
+           <Pagination
+             currentPage={currentPage}
+             setCurrentPage={setCurrentPage}
+             numberOfPages={numberOfPages}
+           />
          </div>
        )}
      </div>

@@ -14,7 +14,7 @@ export const Pagination = ({
   const windowWidth = window.innerWidth;
 
   return (
-    <div className="paging">
+    <div className="flex gap-2 items-center">
       {windowWidth > 768 && (
         <>
           <ButtonTable
@@ -26,7 +26,7 @@ export const Pagination = ({
           <ButtonTable
             updatePage={() => setCurrentPage(currentPage - 1)}
             disabled={currentPage === 1}
-            label={<ArrowLeft />}
+            label={<ArrowLeft className="w-4 h-4" />}
           />
         </>
       )}
@@ -48,7 +48,7 @@ export const Pagination = ({
           <ButtonTable
             updatePage={() => setCurrentPage(currentPage + 1)}
             disabled={currentPage === numberOfPages}
-            label={<ArrowRight />}
+            label={<ArrowRight className="w-4 h-4" />}
           />
 
           <ButtonTable
