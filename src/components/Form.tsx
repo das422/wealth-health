@@ -1,5 +1,6 @@
 import { Save } from "lucide-react";
 import { useState } from "react";
+import { Modal } from "react-open-modal-js";
 import ListDepartment from "../data/department.list";
 import ListState from "../data/state.list";
 import { useEmployeeStore } from "../store/employee.store";
@@ -7,9 +8,15 @@ import type { Employee, FormErrors } from "../types/types";
 import Dropdown from "./Dropdown";
 
 export default function Form() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
   const [state, setState] = useState("");
   const [department, setDepartment] = useState("");
   const addEmployee = useEmployeeStore((s) => s.addEmployee);
+
+
+    const closeModal = () => {
+      setIsModalOpen(false);
+  };
 
   const initialFormState = {
     firstname: "",
@@ -72,6 +79,18 @@ export default function Form() {
     return isValid;
   };
 
+   const currentEmployee: Employee = {
+     firstname: formData.firstname,
+     lastname: formData.lastname,
+     dateBirth: new Date(formData.dateBirth).toLocaleDateString("fr-FR"),
+     startDate: new Date(formData.startDate).toLocaleDateString("fr-FR"),
+     street: formData.street,
+     city: formData.city,
+     state: state,
+     zip: formData.zip,
+     department: department,
+   };
+
   const handleBlur = (e: { target: { name: string; value: string } }) => {
     const { name, value } = e.target;
     if (!value.trim()) {
@@ -86,22 +105,11 @@ export default function Form() {
     e.preventDefault();
 
     if (validateForm()) {
-      const currentEmployee: Employee = {
-        firstname: formData.firstname,
-        lastname: formData.lastname,
-        dateBirth: new Date(formData.dateBirth).toLocaleDateString("fr-FR"),
-        startDate: new Date(formData.startDate).toLocaleDateString("fr-FR"),
-        street: formData.street,
-        city: formData.city,
-        state: state,
-        zip: formData.zip,
-        department: department,
-      };
-
       addEmployee(currentEmployee);
       setFormData(initialFormState);
       setState("");
       setDepartment("");
+      setIsModalOpen(true);
     }
   };
 
@@ -111,10 +119,14 @@ export default function Form() {
       onSubmit={handleSubmit}
     >
       <fieldset className="flex flex-col w-full p-8 border border-secondary rounded-lg gap-8">
-        <legend className="text-2xl font-bold px-2">Personal Information</legend>
+        <legend className="text-2xl font-bold px-2">
+          Personal Information
+        </legend>
         <div className="flex flex-col lg:flex-row w-full gap-8">
           <div className="flex flex-col w-full gap-4">
-            <label htmlFor="firstname" className="text-xl">First name *</label>
+            <label htmlFor="firstname" className="text-xl">
+              First name *
+            </label>
             <input
               type="text"
               id="firstname"
@@ -131,7 +143,9 @@ export default function Form() {
             )}
           </div>
           <div className="flex flex-col w-full gap-4">
-            <label htmlFor="lastname" className="text-xl">Last name *</label>
+            <label htmlFor="lastname" className="text-xl">
+              Last name *
+            </label>
             <input
               type="text"
               id="lastname"
@@ -150,7 +164,9 @@ export default function Form() {
         </div>
         <div className="flex flex-col lg:flex-row w-full gap-8">
           <div className="flex flex-col w-full gap-4">
-            <label htmlFor="dateBirth" className="text-xl">Date of Birth *</label>
+            <label htmlFor="dateBirth" className="text-xl">
+              Date of Birth *
+            </label>
             <input
               type="date"
               id="dateBirth"
@@ -167,7 +183,9 @@ export default function Form() {
             )}
           </div>
           <div className="flex flex-col w-full gap-4">
-            <label htmlFor="startDate" className="text-xl">Start Date *</label>
+            <label htmlFor="startDate" className="text-xl">
+              Start Date *
+            </label>
             <input
               type="date"
               id="startDate"
@@ -189,7 +207,9 @@ export default function Form() {
         <legend className="text-2xl font-bold px-2">Address</legend>
         <div className="flex flex-col lg:flex-row w-full gap-8">
           <div className="flex flex-col w-full gap-4">
-            <label htmlFor="street" className="text-xl">Street *</label>
+            <label htmlFor="street" className="text-xl">
+              Street *
+            </label>
             <input
               type="text"
               id="street"
@@ -206,7 +226,9 @@ export default function Form() {
             )}
           </div>
           <div className="flex flex-col w-full gap-4">
-            <label htmlFor="city" className="text-xl">City *</label>
+            <label htmlFor="city" className="text-xl">
+              City *
+            </label>
             <input
               type="text"
               id="city"
@@ -225,7 +247,9 @@ export default function Form() {
         </div>
         <div className="flex flex-col lg:flex-row w-full gap-8">
           <div className="flex flex-col w-full gap-4">
-            <label aria-label="Select state" className="text-xl">State *</label>
+            <label aria-label="Select state" className="text-xl">
+              State *
+            </label>
             <Dropdown
               data={ListState}
               selectedItem={state}
@@ -233,7 +257,9 @@ export default function Form() {
             />
           </div>
           <div className="flex flex-col w-full gap-4">
-            <label htmlFor="zip" className="text-xl">Zip code *</label>
+            <label htmlFor="zip" className="text-xl">
+              Zip code *
+            </label>
             <input
               type="number"
               id="zip"
@@ -273,6 +299,18 @@ export default function Form() {
           <span>Save</span>
         </button>
         {/* {modal component} */}
+        {isModalOpen && (
+          <div style={{ fontSize: "clamp(2rem, 2.5vw, 2.5rem)" }}>
+            <Modal
+              text="Employee Created!"
+              isOpen={isModalOpen}
+              onClose={closeModal}
+              textColor="#fff"
+              backgroundColor="#157846"
+              iconColor="red"
+            />
+          </div>
+        )}
       </div>
     </form>
   );
