@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
@@ -10,6 +10,7 @@ export default {
         background: "#000",
         foreground: "#fff",
         error: "#D41F4A",
+        dark: '#your-dark-color',
       },
     },
   },

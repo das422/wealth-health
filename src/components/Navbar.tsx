@@ -31,7 +31,7 @@ export default function Navbar() {
       {/* Desktop menu */}
       <ul className="lg:flex flex-row items-center gap-16 hidden">
         <li>
-          <Link to="/WealthHealth/" className="flex flex-row items-center gap-4 font-bold text-[clamp(1.8rem,2vw,2rem)] group">
+          <Link to="/" className="flex flex-row items-center gap-4 font-bold text-[clamp(1.8rem,2vw,2rem)] group">
             <Plus />
             <span className="relative group-hover:after:w-full after:content-[''] after:absolute after:bottom-2 after:left-0 after:w-0 after:h-[0.2rem] after:bg-primary after:transition-[width] after:duration-100 after:ease-in-out">
               Add employee
@@ -39,7 +39,7 @@ export default function Navbar() {
           </Link>
         </li>
         <li>
-          <Link to="/WealthHealth/employees/" className="flex flex-row items-center gap-4 font-bold text-[clamp(1.8rem,2vw,2rem)] group">
+          <Link to="/employees" className="flex flex-row items-center gap-4 font-bold text-[clamp(1.8rem,2vw,2rem)] group">
             <List />
             <span className="relative group-hover:after:w-full after:content-[''] after:absolute after:bottom-[-0.5rem] after:left-0 after:w-0 after:h-[0.2rem] after:bg-primary after:transition-[width] after:duration-100 after:ease-in-out">
               Current employees
