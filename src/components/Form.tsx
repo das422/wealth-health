@@ -8,14 +8,13 @@ import type { Employee, FormErrors } from "../types/types";
 import Dropdown from "./Dropdown";
 
 export default function Form() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [state, setState] = useState("");
   const [department, setDepartment] = useState("");
   const addEmployee = useEmployeeStore((s) => s.addEmployee);
 
-
-    const closeModal = () => {
-      setIsModalOpen(false);
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   const initialFormState = {
@@ -37,9 +36,8 @@ export default function Form() {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
 
-
     if (value.trim()) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
 
@@ -79,24 +77,24 @@ export default function Form() {
     return isValid;
   };
 
-   const currentEmployee: Employee = {
-     firstname: formData.firstname,
-     lastname: formData.lastname,
-     dateBirth: new Date(formData.dateBirth).toLocaleDateString("fr-FR"),
-     startDate: new Date(formData.startDate).toLocaleDateString("fr-FR"),
-     street: formData.street,
-     city: formData.city,
-     state: state,
-     zip: formData.zip,
-     department: department,
-   };
+  const currentEmployee: Employee = {
+    firstname: formData.firstname,
+    lastname: formData.lastname,
+    dateBirth: new Date(formData.dateBirth).toLocaleDateString("fr-FR"),
+    startDate: new Date(formData.startDate).toLocaleDateString("fr-FR"),
+    street: formData.street,
+    city: formData.city,
+    state: state,
+    zip: formData.zip,
+    department: department,
+  };
 
   const handleBlur = (e: { target: { name: string; value: string } }) => {
     const { name, value } = e.target;
     if (!value.trim()) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        [name]: `${name.charAt(0).toUpperCase() + name.slice(1)} is required`
+        [name]: `${name.charAt(0).toUpperCase() + name.slice(1)} is required`,
       }));
     }
   };
@@ -300,16 +298,11 @@ export default function Form() {
         </button>
         {/* {modal component} */}
         {isModalOpen && (
-          <div style={{ fontSize: "clamp(2rem, 2.5vw, 2.5rem)" }}>
-            <Modal
-              text="Employee Created!"
-              isOpen={isModalOpen}
-              onClose={closeModal}
-              textColor="#fff"
-              backgroundColor="#157846"
-              iconColor="red"
-            />
-          </div>
+          <Modal
+            text={"Employee Created!"}
+            isOpen={isModalOpen}
+            onClose={closeModal}
+          />
         )}
       </div>
     </form>
