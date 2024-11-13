@@ -14,7 +14,7 @@ export default function Navbar() {
 
   return (
     <nav className="flex flex-row justify-between h-40 px-16 py-8 bg-secondary text-foreground sm:px-4 relative">
-      <Link to="/WealthHealth/" className="flex flex-row items-center gap-4 font-bold text-[clamp(1.8rem,2vw,2rem)] z-20">
+      <Link to="/" className="flex flex-row items-center gap-4 font-bold text-[clamp(1.8rem,2vw,2rem)] z-20">
         <img src={Logo} alt="Logo - HRnet" className="h-full" />
         <h1 className="text-[clamp(1.8rem,2vw,2rem)] text-primary">HRnet</h1>
       </Link>
@@ -63,7 +63,7 @@ export default function Navbar() {
         <ul className="flex flex-col items-start gap-8 pt-40 px-8">
           <li className="w-full">
             <Link
-              to="/WealthHealth/"
+              to="/"
               className="flex flex-row items-center gap-4 font-bold text-[clamp(1.6rem,2vw,1.8rem)] hover:text-primary transition-colors w-full"
               onClick={toggleMenu}
             >
@@ -73,7 +73,7 @@ export default function Navbar() {
           </li>
           <li className="w-full">
             <Link
-              to="/WealthHealth/employees/"
+              to="/employees"
               className="flex flex-row items-center gap-4 font-bold text-[clamp(1.6rem,2vw,1.8rem)] hover:text-primary transition-colors w-full"
               onClick={toggleMenu}
             >

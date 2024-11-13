@@ -1,5 +1,5 @@
-import { useEmployeeStore } from "../../store/employee.store";
 import DataTable from "../../components/Table/DataTable";
+import { useEmployeeStore } from "../../store/employee.store";
 
 export default function Employees() {
   const employees = useEmployeeStore((s) => s.employees);
