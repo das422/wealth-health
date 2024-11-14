@@ -298,11 +298,14 @@ export default function Form() {
         </button>
         {/* {modal component} */}
         {isModalOpen && (
-          <Modal
-            text={"Employee Created!"}
+          <div className=" fixed inset-0 flex items-center justify-center">
+            <Modal
+              text={"Employee Successfully Created!"}
             isOpen={isModalOpen}
-            onClose={closeModal}
-          />
+              onClose={closeModal}
+              className=" space-y-10 text-right  space-x-4 text-secondary border-secondary border-2 bg-secondary"
+            />
+          </div>
         )}
       </div>
     </form>
