@@ -8,7 +8,7 @@ import type { Employee, FormErrors } from "../types/types";
 import Dropdown from "./Dropdown";
 
 export default function Form() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(true);
   const [state, setState] = useState("");
   const [department, setDepartment] = useState("");
   const addEmployee = useEmployeeStore((s) => s.addEmployee);
