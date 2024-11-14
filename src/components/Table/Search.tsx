@@ -6,11 +6,12 @@ export const Search = ({ setSearch }: SearchProps) => {
   const employees = useEmployeeStore((s) => s.employees);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const search = e.target.value;
+    const search = e.target.value.toLowerCase();
     const filteredEmployees = employees.filter((employee) =>
-      Object.values(employee).some((value) =>
-        value.toString().toLowerCase().includes(search.toLowerCase())
-      )
+      Object.values(employee).some((value) => {
+        const stringValue = String(value).toLowerCase();
+        return stringValue.includes(search);
+      })
     );
     setSearch(filteredEmployees);
   };
